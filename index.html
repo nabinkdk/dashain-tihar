@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>अर्घ्य — Chhath geet by the river at dawn</title>
+<meta name="description" content="A dawn at the ghat. Chhath geet for the setting and rising sun — Sharda Sinha and other voices." />
+<meta property="og:title" content="अर्घ्य — Chhath geet by the river at dawn" />
+<meta property="og:description" content="Stand at the ghat at first light. Chhath songs for the rising sun." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --night:#05081b; --dusk:#241a4a; --rose:#7d3f57;
+    --amber:#ffb23e; --gold:#ffe08a; --sun:#fff3cf; --vermilion:#e2482c;
+    --ivory:#f7ecd0; --sand:#d9c49a;
+    --glass:rgba(10,12,26,.44); --glass-strong:rgba(8,10,22,.72);
+    --line:rgba(255,178,62,.22); --line-soft:rgba(255,178,62,.12);
+    --shadow:0 24px 60px -20px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:"Mukta",system-ui,sans-serif;background:var(--night);color:var(--ivory);
+       overflow:hidden;position:relative;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  /* ---------------- SKY ---------------- */
+  .sky{position:fixed;left:0;right:0;top:0;bottom:34%;z-index:0;
+    background:linear-gradient(to bottom,
+      #05081b 0%,#0a0f2e 17%,#201748 36%,#45285a 49%,
+      #863f52 57%,#c8622e 63%,#ffb23e 100%)}
+  .stars{position:fixed;left:0;right:0;top:0;height:46%;z-index:1;pointer-events:none}
+  .star{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--ivory);opacity:.5}
+
+  .sun-wrap{position:fixed;left:50%;top:57%;transform:translate(-50%,-50%);z-index:2;
+    pointer-events:none;animation:rise 3s cubic-bezier(.16,.8,.28,1) both}
+  .halo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:min(72vw,720px);height:min(72vw,720px);border-radius:50%;
+    background:radial-gradient(circle,rgba(255,214,120,.55) 0%,rgba(255,178,62,.34) 26%,
+      rgba(255,150,50,.14) 46%,rgba(255,140,50,0) 68%);
+    animation:breathe 8s ease-in-out infinite}
+  .sun{position:relative;width:clamp(130px,20vw,236px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 50% 44%,#fffaf0 0%,#fff0c8 30%,#ffd873 58%,#ffb23e 82%,#ff9c33 100%);
+    box-shadow:0 0 90px 20px rgba(255,190,80,.5),0 0 40px 6px rgba(255,225,150,.6)}
+
+  .mist{position:fixed;left:0;right:0;top:57%;height:16%;z-index:3;pointer-events:none;overflow:hidden}
+  .mist span{position:absolute;top:20%;height:70%;width:60%;border-radius:50%;
+    background:radial-gradient(ellipse,rgba(255,224,170,.16),rgba(255,224,170,0) 70%);filter:blur(6px)}
+
+  /* ---------------- WATER ---------------- */
+  .water{position:fixed;left:0;right:0;top:66%;bottom:0;z-index:4;overflow:hidden;
+    background:linear-gradient(to bottom,
+      #ffb23e 0%,#d5762f 4%,#8a4a44 11%,#3d2f4d 30%,#14152e 62%,#080c1e 100%)}
+
+  /* one responsive SVG: banks + temple + devotees + true mirrored reflection */
+  .horizon{position:fixed;left:0;right:0;top:66%;transform:translateY(-40%);z-index:5;pointer-events:none}
+  .horizon svg{display:block;width:100%;height:auto}
+
+  /* sun-glitter on the water */
+  #shimmer{position:fixed;left:0;right:0;top:66%;bottom:0;z-index:6;pointer-events:none}
+
+  .diyas{position:fixed;left:0;right:0;top:66%;bottom:0;z-index:7;pointer-events:none}
+  .diya{position:absolute;will-change:transform}
+  .diya .glow{position:absolute;left:50%;top:-6px;transform:translateX(-50%);
+    width:26px;height:26px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,196,90,.9),rgba(255,150,40,0) 70%);
+    animation:flicker 1.1s ease-in-out infinite}
+
+  /* ---------------- UI ---------------- */
+  .ui{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;
+      padding:max(18px,env(safe-area-inset-top)) clamp(16px,4vw,40px) 0}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .live{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem;letter-spacing:.02em;color:var(--sand);background:var(--glass);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line-soft);border-radius:999px;padding:7px 13px 7px 11px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#54e08a;box-shadow:0 0 8px #54e08a;
+    animation:pulse 2.4s ease-in-out infinite}
+  .top-actions{display:flex;align-items:center;gap:8px}
+  .chip{display:inline-flex;align-items:center;gap:7px;cursor:pointer;text-decoration:none;
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ivory);background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line-soft);border-radius:999px;padding:8px 13px;
+    transition:border-color .25s,background .25s,transform .15s}
+  .chip:hover{border-color:var(--line);background:rgba(255,178,62,.1)}
+  .chip:active{transform:translateY(1px)}
+  .chip svg{width:14px;height:14px}
+  .chip.solid{background:rgba(255,178,62,.14);border-color:var(--line);color:var(--gold)}
+
+  .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    text-align:center;padding-top:clamp(28px,7vh,80px)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:clamp(.62rem,1.4vw,.76rem);
+    letter-spacing:.42em;text-transform:uppercase;color:var(--amber);
+    opacity:0;animation:fadeUp .9s ease .3s forwards;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+  .wordmark{font-family:"Rozha One",serif;font-weight:400;line-height:.92;
+    font-size:clamp(4.6rem,15vw,11rem);color:var(--ivory);letter-spacing:.01em;margin:.12em 0 .1em;
+    text-shadow:0 4px 40px rgba(255,180,70,.28),0 2px 10px rgba(0,0,0,.35);
+    opacity:0;animation:fadeUp 1.1s ease .5s forwards}
+  .subtitle{font-family:"Mukta",sans-serif;font-weight:400;font-size:clamp(.95rem,2.3vw,1.22rem);
+    color:rgba(247,236,208,.82);max-width:34ch;line-height:1.5;
+    opacity:0;animation:fadeUp 1.1s ease .72s forwards}
+  .credit{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.06em;
+    color:rgba(247,236,208,.78);margin-top:14px;text-shadow:0 1px 14px rgba(0,0,0,.55);
+    opacity:0;animation:fadeUp 1.1s ease .92s forwards}
+
+  .videobox{position:fixed;right:clamp(16px,4vw,40px);bottom:150px;z-index:25;
+    width:min(300px,72vw);aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:var(--shadow);background:#000;display:none}
+  .videobox.on{display:block}
+  #yt{width:100%;height:100%;border:0}
+  .videobox.hidden-player{position:fixed;width:1px;height:1px;left:-9999px;bottom:auto;top:0;
+    border:0;box-shadow:none;border-radius:0;display:block;overflow:hidden}
+
+  .player{margin:0 auto clamp(16px,3vh,26px);width:min(720px,100%);
+    background:var(--glass-strong);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);
+    padding:14px 16px;position:relative;overflow:hidden;
+    opacity:0;transform:translateY(20px);animation:fadeUp 1s ease 1.05s forwards}
+  .player::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,224,150,.5),transparent)}
+  .p-row{display:flex;align-items:center;gap:14px}
+  .art{width:56px;height:56px;flex:none;border-radius:12px;overflow:hidden;
+    background:linear-gradient(135deg,#3a2b5c,#1a1330);position:relative;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
+  .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .art .fallico{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;opacity:.7}
+  .meta{min-width:0;flex:1}
+  .meta .t{font-family:"Mukta";font-weight:600;font-size:1.04rem;color:var(--ivory);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta .a{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--sand);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .controls{display:flex;align-items:center;gap:6px;flex:none}
+  .ctl{width:40px;height:40px;border-radius:50%;border:1px solid transparent;background:transparent;
+    color:var(--ivory);cursor:pointer;display:grid;place-items:center;
+    transition:background .2s,transform .12s,border-color .2s}
+  .ctl:hover{background:rgba(255,255,255,.08)}
+  .ctl:active{transform:scale(.92)}
+  .ctl svg{width:20px;height:20px}
+  .ctl.play{width:52px;height:52px;background:linear-gradient(135deg,#ffcf6b,#ff9c33);color:#241405;
+    box-shadow:0 6px 20px -6px rgba(255,160,60,.7)}
+  .ctl.play:hover{background:linear-gradient(135deg,#ffd985,#ffa945)}
+  .ctl.play svg{width:24px;height:24px}
+  .ctl.small{width:34px;height:34px}
+  .ctl.small svg{width:16px;height:16px}
+
+  .seek{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .time{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--sand);
+    min-width:38px;text-align:center;font-variant-numeric:tabular-nums}
+  .track{position:relative;flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);cursor:pointer}
+  .fill{position:absolute;left:0;top:0;height:100%;border-radius:4px;width:0%;
+    background:linear-gradient(90deg,#ffcf6b,#ffb23e)}
+  .thumb{position:absolute;top:50%;left:0%;width:12px;height:12px;border-radius:50%;background:#fff3cf;
+    transform:translate(-50%,-50%);box-shadow:0 0 8px rgba(255,220,140,.9);opacity:0;transition:opacity .2s}
+  .track:hover .thumb{opacity:1}
+  input[type=range].range{position:absolute;inset:-8px 0;width:100%;height:20px;opacity:0;cursor:pointer;margin:0}
+  .hint{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.04em;
+    color:rgba(217,196,154,.7);text-align:center;margin-top:9px;transition:opacity .4s}
+
+  /* ---------------- PANEL ---------------- */
+  .scrim{position:fixed;inset:0;z-index:40;background:rgba(4,6,16,.5);
+    backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:.35s}
+  .scrim.on{opacity:1;visibility:visible}
+  .panel{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:82vh;display:flex;flex-direction:column;
+    background:linear-gradient(to bottom,#0d1024,#080a18);border-top:1px solid var(--line);
+    border-radius:22px 22px 0 0;box-shadow:0 -30px 60px -20px rgba(0,0,0,.8);
+    transform:translateY(101%);transition:transform .42s cubic-bezier(.2,.8,.2,1)}
+  .panel.on{transform:translateY(0)}
+  .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding:22px clamp(18px,5vw,34px) 6px}
+  .panel-head h2{font-family:"Rozha One",serif;font-weight:400;font-size:clamp(1.5rem,4vw,2rem);
+    color:var(--ivory);line-height:1.1}
+  .panel-head .sub{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .close{width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--line-soft);
+    background:transparent;color:var(--ivory);cursor:pointer;display:grid;place-items:center}
+  .close:hover{background:rgba(255,255,255,.08)}
+  .note{padding:6px clamp(18px,5vw,34px) 14px;color:rgba(247,236,208,.72);font-size:.92rem;line-height:1.55;max-width:64ch}
+  .note a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--line)}
+  .list{overflow-y:auto;padding:4px clamp(10px,3vw,22px) max(24px,env(safe-area-inset-bottom))}
+  .song{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+    padding:12px 14px;border-radius:12px;transition:background .18s}
+  .song:hover{background:rgba(255,178,62,.08)}
+  .song .n{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--amber);
+    width:26px;text-align:right;flex:none;opacity:.85;font-variant-numeric:tabular-nums}
+  .song .info{min-width:0;flex:1}
+  .song .st{font-family:"Mukta";font-weight:500;font-size:1rem;color:var(--ivory);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .song .sa{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--sand);margin-top:2px}
+  .song .go{flex:none;color:var(--sand);opacity:0;transition:opacity .2s}
+  .song:hover .go{opacity:.9}
+  .divider{display:flex;align-items:center;gap:12px;padding:16px 20px 6px;font-family:"IBM Plex Mono",monospace;
+    font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);opacity:.7}
+  .divider::before,.divider::after{content:"";height:1px;flex:1;background:var(--line-soft)}
+  .jai{text-align:center;font-family:"Rozha One",serif;font-size:1.05rem;color:var(--amber);padding:18px 0 6px;opacity:.85}
+
+  @keyframes rise{from{transform:translate(-50%,-38%);opacity:.3}to{transform:translate(-50%,-50%);opacity:1}}
+  @keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.07);opacity:1}}
+  @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.9}}
+  @keyframes flicker{0%,100%{opacity:.85;transform:translateX(-50%) scale(1)}45%{opacity:1;transform:translateX(-50%) scale(1.12)}70%{opacity:.7;transform:translateX(-52%) scale(.94)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes mistmove{from{transform:translateX(-40%)}to{transform:translateX(120%)}}
+  @keyframes diyafloat{0%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(14px,-5px) rotate(2deg)}100%{transform:translate(0,0) rotate(-2deg)}}
+
+  @media (prefers-reduced-motion: reduce){
+    .sun-wrap,.halo,.star,.diya,.diya .glow,.mist span,.dot,
+    .eyebrow,.wordmark,.subtitle,.credit,.player{animation:none!important}
+    .eyebrow,.wordmark,.subtitle,.credit,.player{opacity:1!important;transform:none!important}
+  }
+  @media (max-width:560px){
+    .subtitle{max-width:26ch}
+    .art{width:48px;height:48px}.meta .t{font-size:.98rem}
+    .ctl{width:36px;height:36px}.ctl.play{width:48px;height:48px}.controls{gap:2px}
+    #vidToggle{display:none}
+    .videobox{bottom:170px}
+  }
+  @media (max-height:620px){.hero{padding-top:14px}.wordmark{font-size:clamp(3.4rem,13vw,6rem)}}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <div class="sun-wrap" aria-hidden="true"><div class="halo"></div><div class="sun"></div></div>
+
+  <div class="mist" aria-hidden="true">
+    <span style="left:-40%;animation:mistmove 46s linear infinite"></span>
+    <span style="left:-40%;top:40%;height:55%;animation:mistmove 63s linear infinite;animation-delay:-20s"></span>
+  </div>
+
+  <div class="water"></div>
+  <div class="horizon" id="horizon" aria-hidden="true"></div>
+  <canvas id="shimmer" aria-hidden="true"></canvas>
+  <div class="diyas" id="diyas" aria-hidden="true"></div>
+
+  <div class="videobox hidden-player" id="videobox"><div id="yt"></div></div>
+
+  <div class="ui">
+    <div class="topbar">
+      <span class="live"><span class="dot"></span><span id="liveCount">42</span>&nbsp;लोग सुन रहे हैं</span>
+      <div class="top-actions">
+        <a class="chip" href="https://www.youtube.com/playlist?list=PLyXHXSHxLqKy7hxvVopat1bvXLiyZS4Ga" target="_blank" rel="noopener" aria-label="Open on YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.6a2.9 2.9 0 0 0-2-2C18.7 4 12 4 12 4s-6.7 0-8.5.4a2.9 2.9 0 0 0-2 2C1 8.2 1 12 1 12s0 3.8.5 5.6a2.9 2.9 0 0 0 2 2C5.3 20 12 20 12 20s6.7 0 8.5-.4a2.9 2.9 0 0 0 2-2C23 15.8 23 12 23 12ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg>
+          <span>YouTube</span>
+        </a>
+        <button class="chip solid" id="openPanel" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+          <span>गीत</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">छठ महापर्व · भोर का घाट</div>
+      <h1 class="wordmark">अर्घ्य</h1>
+      <p class="subtitle">Chhath geet for the setting and rising sun. Stand at the ghat while the light returns.</p>
+      <div class="credit">शारदा सिन्हा और अन्य स्वर · streaming the T‑Series Chhath collection</div>
+    </div>
+
+    <div class="player" role="region" aria-label="Now playing">
+      <div class="p-row">
+        <div class="art" id="art"><span class="fallico">🪔</span></div>
+        <div class="meta">
+          <div class="t" id="npTitle">Kelwa Ke Paat Par</div>
+          <div class="a" id="npArtist">Sharda Sinha</div>
+        </div>
+        <div class="controls">
+          <button class="ctl small" id="prev" aria-label="Previous song"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14l-11-7z"/></svg></button>
+          <button class="ctl play" id="play" aria-label="Play"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg></button>
+          <button class="ctl small" id="next" aria-label="Next song"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5l11 7-11 7z"/></svg></button>
+          <button class="ctl small" id="vidToggle" aria-label="Show video" title="Show / hide video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2"/></svg></button>
+        </div>
+      </div>
+      <div class="seek">
+        <span class="time" id="cur">0:00</span>
+        <div class="track" id="track"><div class="fill" id="fill"></div><div class="thumb" id="thumbDot"></div>
+          <input type="range" class="range" id="range" min="0" max="1000" value="0" aria-label="Seek" /></div>
+        <span class="time" id="dur">–:––</span>
+      </div>
+      <div class="hint" id="hint">Press play — audio streams from YouTube</div>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <section class="panel" id="panel" role="dialog" aria-modal="true" aria-label="Chhath songs">
+    <div class="panel-head">
+      <div><div class="sub">भोर के घाट पर</div><h2>छठ गीत</h2></div>
+      <button class="close" id="closePanel" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="note">Where the river glows, the diyas rise, and Sharda Sinha’s voice feels like home.
+      <a href="https://www.youtube.com/playlist?list=PLyXHXSHxLqKy7hxvVopat1bvXLiyZS4Ga" target="_blank" rel="noopener">full playlist</a> ·
+      <a href="https://www.jiosaavn.com/featured/sharda-sinha-chhath-songs/5jeqtIE5IsiO0eMLZZxqsA__" target="_blank" rel="noopener">JioSaavn</a>.
+    </p>
+    <div class="list" id="songList"></div>
+    <div class="jai">छठी मईया की जय 🙏</div>
+  </section>
+
+<script>
+/* stars */
+(function(){
+  const wrap=document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s=document.createElement('div');s.className='star';
+    const top=Math.pow(Math.random(),1.5)*100;
+    s.style.top=top+'%';s.style.left=Math.random()*100+'%';
+    const sz=Math.random()*1.6+0.6;s.style.width=sz+'px';s.style.height=sz+'px';
+    s.style.opacity=(0.15+Math.random()*0.5)*(1-top/130);
+    s.style.animation='twinkle '+(2.5+Math.random()*4)+'s ease-in-out '+(Math.random()*4)+'s infinite';
+    wrap.appendChild(s);
+  }
+})();
+
+/* ---------- horizon: banks + temple + devotees + mirrored reflection (one SVG) ---------- */
+(function(){
+  const NB='#05070f';
+  function torsoDown(){
+    return '<circle cx="0" cy="-102" r="12.5"/>'
+      +'<path d="M-17,0 C-18,-28 -19,-52 -19,-66 C-19,-80 -12,-88 0,-88 C12,-88 19,-80 19,-66 C19,-52 18,-28 17,0 Z"/>';
+  }
+  function torsoUp(){
+    return '<circle cx="0" cy="-102" r="11.5"/>'
+      +'<path d="M-15,0 C-16,-28 -16,-52 -15,-66 C-14,-76 -8,-82 0,-82 C8,-82 14,-76 15,-66 C16,-52 16,-28 15,0 Z"/>'
+      +'<path d="M-12,-78 C-23,-87 -33,-107 -38,-128 C-39,-132 -33,-134 -31,-130 C-25,-108 -16,-90 -8,-80 Z"/>'
+      +'<path d="M12,-78 C23,-87 33,-107 38,-128 C39,-132 33,-134 31,-130 C25,-108 16,-90 8,-80 Z"/>'
+      +'<path d="M-44,-126 Q0,-150 44,-126 Q0,-134 -44,-126 Z"/>'
+      +'<path d="M-20,-129 C-18,-141 -7,-143 -3,-136 C-1,-145 9,-147 13,-138 C17,-145 23,-140 20,-129 Q0,-135 -20,-129 Z"/>';
+  }
+  const person=(x,s,up)=>'<g transform="translate('+x+',200) scale('+s+')">'+(up?torsoUp():torsoDown())+'</g>';
+  const temple=tx=>'<g transform="translate('+tx+',0)">'
+      +'<path d="M-30,200 L-30,178 L30,178 L30,200 Z"/>'
+      +'<path d="M-24,178 C-22,150 -14,120 0,104 C14,120 22,150 24,178 Z"/>'
+      +'<path d="M-6,106 Q0,96 6,106 Z"/><circle cx="0" cy="100" r="4.5"/>'
+      +'<path d="M-0.9,100 L-0.9,84 L0.9,84 L0.9,100 Z"/>'
+      +'<path d="M0.9,85 L14,88 L0.9,91 Z"/></g>';
+  const banks='<path d="M0,200 L0,150 C70,140 140,150 210,168 C300,190 350,197 392,200 Z"/>'
+      +'<path d="M1600,200 L1600,150 C1530,140 1460,150 1390,166 C1300,188 1250,197 1188,200 Z"/>';
+  const people=person(430,0.7,false)+person(520,0.9,false)+person(650,0.98,true)
+      +person(800,1.2,true)+person(952,0.98,true)+person(1075,0.9,false)+person(1165,0.7,false);
+  const scene=banks+temple(1440)+people;
+
+  const svg=
+   '<svg viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg">'
+   +'<defs>'
+     +'<g id="chScene">'+scene+'</g>'
+     +'<linearGradient id="reflFade" x1="0" y1="200" x2="0" y2="360" gradientUnits="userSpaceOnUse">'
+       +'<stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+     +'<mask id="reflMask" maskUnits="userSpaceOnUse" x="0" y="200" width="1600" height="300">'
+       +'<rect x="0" y="200" width="1600" height="300" fill="url(#reflFade)"/></mask>'
+     +'<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.1"/></filter>'
+   +'</defs>'
+   +'<g mask="url(#reflMask)">'
+     +'<g transform="matrix(1 0 0 -1 0 400)" fill="#c26a2c" opacity="0.5" filter="url(#soft)"><use href="#chScene"/></g>'
+   +'</g>'
+   +'<g fill="'+NB+'"><use href="#chScene"/></g>'
+   +'</svg>';
+  document.getElementById('horizon').innerHTML=svg;
+})();
+
+/* ---------- floating diyas ---------- */
+(function(){
+  const wrap=document.getElementById('diyas');
+  const spots=[{l:18,t:38,s:1},{l:36,t:56,s:1.2},{l:64,t:48,s:1.1},
+    {l:82,t:62,s:1.3},{l:50,t:72,s:1.45},{l:9,t:66,s:1.15},{l:91,t:42,s:.9}];
+  spots.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='diya';
+    d.style.left=p.l+'%';d.style.top=p.t+'%';d.style.transform='scale('+p.s+')';
+    d.style.animation='diyafloat '+(7+Math.random()*6)+'s ease-in-out '+(-Math.random()*6)+'s infinite';
+    d.innerHTML='<div class="glow" style="animation-delay:'+(-Math.random()*1.1)+'s"></div>'
+      +'<svg width="34" height="20" viewBox="0 0 34 20">'
+      +'<defs><radialGradient id="fl'+i+'" cx="50%" cy="30%" r="70%">'
+      +'<stop offset="0%" stop-color="#fff6d0"/><stop offset="45%" stop-color="#ffcf5e"/>'
+      +'<stop offset="100%" stop-color="#ff7a1e"/></radialGradient></defs>'
+      +'<path d="M2,10 Q17,20 32,10 Q17,15 2,10 Z" fill="#3a1f12"/>'
+      +'<path d="M4,10 Q17,17 30,10 Q17,13 4,10 Z" fill="#7a4a2a"/>'
+      +'<path d="M17,9 C15,5 16,2 17,0 C18,2 19,5 17,9 Z" fill="url(#fl'+i+')"/></svg>';
+    wrap.appendChild(d);
+  });
+})();
+
+/* ---------- sun-glitter on the water ---------- */
+(function(){
+  const cv=document.getElementById('shimmer');const ctx=cv.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,glints=[];
+  function buildGlints(){
+    glints=[];const n=Math.round(W/34)+10;
+    for(let i=0;i<n;i++)glints.push({d:Math.pow(Math.random(),0.7),off:Math.random()*2-1,
+      len:8+Math.random()*22,ph:Math.random()*6.28,sp:0.6+Math.random()*1.4});
+  }
+  function size(){
+    const r=cv.getBoundingClientRect();const dpr=Math.min(devicePixelRatio||1,2);
+    W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);buildGlints();
+  }
+  function draw(t){
+    ctx.clearRect(0,0,W,H);const cx=W/2,colH=H*0.82;
+    ctx.globalCompositeOperation='lighter';
+    for(let y=0;y<colH;y+=2){
+      const depth=y/colH,a=Math.pow(1-depth,1.7)*0.42;if(a<=0.002)continue;
+      const spread=18+depth*W*0.14;
+      const wob=Math.sin(y*0.045+t*0.0014)*3+Math.sin(y*0.11-t*0.0021)*1.5;
+      const g=ctx.createLinearGradient(cx-spread+wob,0,cx+spread+wob,0);
+      g.addColorStop(0,'rgba(255,150,60,0)');
+      g.addColorStop(0.5,'rgba(255,'+(196-(depth*70|0))+','+(120-(depth*50|0))+','+a.toFixed(3)+')');
+      g.addColorStop(1,'rgba(255,150,60,0)');
+      ctx.fillStyle=g;ctx.fillRect(cx-spread+wob,y,spread*2,2.2);
+    }
+    for(const gl of glints){
+      const y=gl.d*colH,spread=18+gl.d*W*0.14;
+      const tw=0.5+0.5*Math.sin(t*0.003*gl.sp+gl.ph);
+      const a=tw*Math.pow(1-gl.d,1.4)*0.5;if(a<=0.02)continue;
+      const x=cx+gl.off*spread*0.9+Math.sin(y*0.05+t*0.0016)*3;
+      const half=gl.len*(0.6+0.4*tw)/2;
+      const g=ctx.createLinearGradient(x-half,0,x+half,0);
+      g.addColorStop(0,'rgba(255,224,150,0)');
+      g.addColorStop(0.5,'rgba(255,240,200,'+a.toFixed(3)+')');
+      g.addColorStop(1,'rgba(255,224,150,0)');
+      ctx.fillStyle=g;ctx.fillRect(x-half,y,half*2,1.6);
+    }
+    ctx.globalCompositeOperation='source-over';
+  }
+  size();addEventListener('resize',size);
+  if(reduce){draw(0);return;}
+  (function loop(ts){draw(ts);requestAnimationFrame(loop);})(0);
+})();
+
+/* live count */
+(function(){const el=document.getElementById('liveCount');let v=42;
+  setInterval(()=>{v+=Math.round((Math.random()-0.45)*4);v=Math.max(26,Math.min(74,v));el.textContent=v;},4200);})();
+
+/* songs */
+const SONGS=[
+  {t:'Kelwa Ke Paat Par',a:'Sharda Sinha'},{t:'Ho Deenanath',a:'Sharda Sinha'},
+  {t:'Uga Ho Suraj Dev',a:'Sharda Sinha'},{t:'Kartik Maas Ijoriya',a:'Sharda Sinha'},
+  {t:'Pahile Pahil Chhathi Maiya',a:'Sharda Sinha'},{t:'Bahangi Lachkat Jaye',a:'Sharda Sinha'},
+  {t:'Patna Ke Ghat Par',a:'Sharda Sinha'},{t:'Suraj Bhaile Bihaan',a:'Sharda Sinha'},
+  {t:'Chhathi Maiya Aayi Na Duaariya',a:'Sharda Sinha'},{t:'Rojdiya',a:'Sharda Sinha'},
+  {t:'Uga Ho Suraj Dev',a:'Anuradha Paudwal'},{t:'Chala Sakhi Puje Chhathi Mai Ke',a:'Anu Dubey'}
+];
+(function(){
+  const list=document.getElementById('songList');let html='';
+  SONGS.forEach((s,i)=>{
+    if(i===10)html+='<div class="divider">और स्वर · beyond Sharda Sinha</div>';
+    const q=encodeURIComponent(s.t+' '+s.a+' chhath geet');const n=(i>=10?i-9:i+1);
+    html+='<a class="song" href="https://www.youtube.com/results?search_query='+q+'" target="_blank" rel="noopener">'
+      +'<span class="n">'+String(n).padStart(2,'0')+'</span>'
+      +'<span class="info"><span class="st">'+s.t+'</span><span class="sa">'+s.a+'</span></span>'
+      +'<span class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>';
+  });
+  list.innerHTML=html;
+})();
+
+/* panel */
+(function(){
+  const scrim=document.getElementById('scrim'),panel=document.getElementById('panel');
+  const open=()=>{scrim.classList.add('on');panel.classList.add('on');};
+  const close=()=>{scrim.classList.remove('on');panel.classList.remove('on');};
+  document.getElementById('openPanel').addEventListener('click',open);
+  document.getElementById('closePanel').addEventListener('click',close);
+  scrim.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+
+/* ---------- YouTube player ---------- */
+const PLAYLIST_ID='PLyXHXSHxLqKy7hxvVopat1bvXLiyZS4Ga';
+let player=null,apiReady=false,ready=false,isPlaying=false,seeking=false,fell=false,pendingPlay=false;
+const $=id=>document.getElementById(id);
+const playIcon=$('playIcon');
+function setPlayIcon(p){playIcon.innerHTML=p?'<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>':'<path d="M7 5v14l12-7z"/>';
+  $('play').setAttribute('aria-label',p?'Pause':'Play');}
+function fmt(s){if(!isFinite(s)||s<0)s=0;const m=Math.floor(s/60),x=Math.floor(s%60);return m+':'+String(x).padStart(2,'0');}
+function updateNowPlaying(){
+  if(!ready||!player.getVideoData)return;const d=player.getVideoData();
+  if(d&&d.title){let raw=d.title;let title=raw.split('|')[0].trim();
+    $('npTitle').textContent=title||raw;
+    $('npArtist').textContent=(d.author||'Sharda Sinha').replace(/\s*-\s*Topic$/,'').trim();
+    if(d.video_id)$('art').innerHTML='<img alt="" src="https://i.ytimg.com/vi/'+d.video_id+'/hqdefault.jpg">';}
+}
+const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';
+tag.onerror=()=>enterFallback();document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady=function(){apiReady=true;createPlayer();};
+setTimeout(()=>{if(!apiReady)enterFallback();},5000);
+function createPlayer(){
+  player=new YT.Player('yt',{width:'100%',height:'100%',
+    playerVars:{listType:'playlist',list:PLAYLIST_ID,autoplay:0,controls:0,modestbranding:1,rel:0,playsinline:1,iv_load_policy:3},
+    events:{onReady:onReady,onStateChange:onState,onError:onErr}});
+}
+function onReady(){
+  ready=true;$('hint').textContent='Press play — audio streams from YouTube';updateNowPlaying();
+  if(pendingPlay){pendingPlay=false;try{player.playVideo();}catch(_){}}
+  setInterval(()=>{
+    if(!ready||seeking||!player.getDuration)return;
+    const dur=player.getDuration(),cur=player.getCurrentTime();
+    if(dur>0){const pct=cur/dur*100;$('fill').style.width=pct+'%';$('thumbDot').style.left=pct+'%';
+      $('range').value=Math.round(cur/dur*1000);$('cur').textContent=fmt(cur);$('dur').textContent=fmt(dur);}
+  },250);
+}
+function onState(e){
+  isPlaying=(e.data===YT.PlayerState.PLAYING);setPlayIcon(isPlaying);
+  if(e.data===YT.PlayerState.PLAYING){updateNowPlaying();const h=$('hint');h.style.opacity='0';setTimeout(()=>h.style.display='none',400);}
+}
+function onErr(){if(ready&&player.nextVideo){try{player.nextVideo();}catch(_){}}}
+function enterFallback(){if(fell)return;fell=true;ready=false;
+  $('hint').innerHTML='Tap play to open the playlist on <a style="color:var(--gold)" href="https://www.youtube.com/playlist?list='+PLAYLIST_ID+'" target="_blank" rel="noopener">YouTube</a>';}
+function openYT(){window.open('https://www.youtube.com/playlist?list='+PLAYLIST_ID,'_blank','noopener');}
+$('play').addEventListener('click',()=>{
+  if(!ready){if(fell)openYT();else{pendingPlay=true;$('hint').textContent='Loading the ghat…';}return;}
+  if(isPlaying)player.pauseVideo();else player.playVideo();
+});
+$('prev').addEventListener('click',()=>{if(ready)try{player.previousVideo();player.playVideo();}catch(_){}});
+$('next').addEventListener('click',()=>{if(ready)try{player.nextVideo();player.playVideo();}catch(_){}});
+const range=$('range');
+range.addEventListener('input',()=>{seeking=true;
+  if(ready&&player.getDuration){const d=player.getDuration(),c=range.value/1000*d;
+    $('fill').style.width=(range.value/10)+'%';$('thumbDot').style.left=(range.value/10)+'%';$('cur').textContent=fmt(c);}});
+range.addEventListener('change',()=>{if(ready&&player.getDuration)player.seekTo(range.value/1000*player.getDuration(),true);seeking=false;});
+$('vidToggle').addEventListener('click',()=>{const box=$('videobox');
+  if(box.classList.contains('hidden-player')){box.classList.remove('hidden-player');box.classList.add('on');}
+  else{box.classList.toggle('on');if(!box.classList.contains('on'))box.classList.add('hidden-player');}});
+document.addEventListener('keydown',e=>{const tg=(e.target.tagName||'').toLowerCase();
+  if(tg==='input'||tg==='textarea')return;
+  if(e.code==='Space'){e.preventDefault();$('play').click();}
+  else if(e.code==='ArrowRight')$('next').click();
+  else if(e.code==='ArrowLeft')$('prev').click();});
+</script>
+</body>
+</html>
