@@ -4,10 +4,10 @@
 
 The festive season is in the air. Whether you are traveling back to your hometown or missing the festive vibes from afar, this project is built to bring the sounds of Nepal right to you.
 
-Tune into [Dashain & Tihar Radio](https://your-app-link.vercel.app) and let the timeless, soulful tunes carry you home.
+Tune into [Dashain & Tihar Radio](https://dashain-tihar-playlist.vercel.app/) and let the timeless, soulful tunes carry you home.
 
 ## 📻 Listen Now
 
 Experience the joy and nostalgia:
 
-👉 [your-app-link.vercel.app](https://your-app-link.vercel.app)
+👉 [https://dashain-tihar-playlist.vercel.app/](https://your-app-link.vercel.app)
