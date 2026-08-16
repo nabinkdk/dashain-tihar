@@ -710,6 +710,44 @@ input[type="range"].range {
   transition: opacity 0.4s;
 }
 
+/* --- FESTIVE MARIGOLD, MAKHAMALI & CRACKER ANIMATIONS --- */
+.festive-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Clicks pass right through to UI and player */
+  z-index: 60;          /* Above background, below UI elements */
+  overflow: hidden;
+}
+
+.festive-particle {
+  position: absolute;
+  top: -50px;
+  user-select: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+  animation: fallFestive linear infinite;
+}
+
+/* Falling motion spanning left, middle, and right corners */
+@keyframes fallFestive {
+  0% {
+    transform: translateY(-50px) translateX(0) rotate(var(--initial-rotation));
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(105vh) translateX(40px) rotate(calc(var(--initial-rotation) + 360deg));
+    opacity: 0;
+  }
+}
+
 /* ---------------- PANEL ---------------- */
 .scrim {
   position: fixed;

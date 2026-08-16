@@ -135,7 +135,7 @@ export default function Player() {
         playerVars: {
           listType: "playlist",
           list: PLAYLIST_ID,
-          autoplay: 0,
+          autoplay: 1,
           controls: 0,
           modestbranding: 1,
           rel: 0,
@@ -342,21 +342,9 @@ export default function Player() {
             visibility: hintHidden ? "hidden" : "visible",
           }}
         >
-          {hintIsLink ? (
-            <>
-              Tap play to open the playlist on{" "}
-              <a
-                style={{ color: "var(--gold)" }}
-                href={PLAYLIST_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                YouTube
-              </a>
-            </>
-          ) : (
-            hintText
-          )}
+          <p>
+            Developed by Nabin❤️
+          </p>
         </div>
       </div>
     </>
